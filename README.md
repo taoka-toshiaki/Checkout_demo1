@@ -37,7 +37,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
   'payment_method_types' => ['card'],
   'line_items' =>[$item],
   'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '/Checkout/demo1/success.html',
+  'success_url' => $YOUR_DOMAIN ."/Checkout/success?session_id={CHECKOUT_SESSION_ID}",
   'cancel_url' => $YOUR_DOMAIN . '/Checkout/demo1/cancel.html',
 ]);
 
@@ -169,12 +169,21 @@ $checkout_session = \Stripe\Checkout\Session::create([
   'payment_method_types' => ['card'],
   'line_items' =>[$item],
   'mode' => 'payment',
-  'success_url' => $YOUR_DOMAIN . '/Checkout/demo1/success.html',
+  'success_url' => $YOUR_DOMAIN ."/Checkout/success?session_id={CHECKOUT_SESSION_ID}",
   'cancel_url' => $YOUR_DOMAIN . '/Checkout/demo1/cancel.html',
 ]);
 
 echo json_encode(['id' => $checkout_session->id]);
 ```
 
+### 支払い完了と購入者情報  
+  
+```php:success.php
+<?php
+require '../vendor/autoload.php';
+\Stripe\Stripe::setApiKey('sk_test_????????????????????????????????????????????????');
+$session = \Stripe\Checkout\Session::retrieve($_GET['session_id']);
+$payment_intent = \Stripe\PaymentIntent::retrieve($session->payment_intent);
 
-
+var_dump($payment_intent);
+```
