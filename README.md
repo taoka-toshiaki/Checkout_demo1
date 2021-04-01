@@ -176,7 +176,7 @@ $checkout_session = \Stripe\Checkout\Session::create([
 echo json_encode(['id' => $checkout_session->id]);
 ```
 
-### 支払い完了と購入者情報  
+### 支払い完了と購入者情報取得  
   
 ```php:success/index.php
 <?php
