@@ -160,7 +160,7 @@ echo json_encode(['id' => $checkout_session->id]);
 ![2021-04-01_19-52-36.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/779064/80b68f88-f29d-43bd-9f50-3dcc3cbf290a.png)
 
 
-```php:配送先住所を入力して頂くパターン
+```php:配送先住所を入力して頂くパターン.php
 $checkout_session = \Stripe\Checkout\Session::create([
 	'billing_address_collection' => 'required',
 	'shipping_address_collection' => [
