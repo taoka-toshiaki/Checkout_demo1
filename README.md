@@ -155,6 +155,26 @@ echo json_encode(['id' => $checkout_session->id]);
 
 </html>
 ```
+### 配送先住所を入力して頂くパターン  
+
+![2021-04-01_19-52-36.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/779064/80b68f88-f29d-43bd-9f50-3dcc3cbf290a.png)
+
+
+```php:配送先住所を入力して頂くパターン
+$checkout_session = \Stripe\Checkout\Session::create([
+	'billing_address_collection' => 'required',
+	'shipping_address_collection' => [
+	  'allowed_countries' => ['JP'],
+	],	
+  'payment_method_types' => ['card'],
+  'line_items' =>[$item],
+  'mode' => 'payment',
+  'success_url' => $YOUR_DOMAIN . '/Checkout/demo1/success.html',
+  'cancel_url' => $YOUR_DOMAIN . '/Checkout/demo1/cancel.html',
+]);
+
+echo json_encode(['id' => $checkout_session->id]);
+```
 
 
 
